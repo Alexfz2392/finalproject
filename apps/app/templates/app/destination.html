@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'app/index.css' %}">	
+</head>
+<body>
+
+
+
+<a href="/user/show">Home</a>
+<a href="/user/logout">Logout</a>
+</div>
+
+<h1>{{trip.destination}}</h1>
+<p>Planned By: {{trip.user.name}}</p>
+<p>Description: {{trip.plan}}</p>
+<p>Travel Date From: {{trip.travel_date_from}}</p>
+<p>Travel Date To: {{trip.travel_date_to}}</p>
+
+<h4>Other users' joining the trip.</h4>
+
+{% for i in groupmembers %}
+<p>{{i.user.name}}</p>
+
+{% endfor %}
+</body>
+</html>

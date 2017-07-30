@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'app/index.css' %}">	
+</head>
+<body>
+
+
+<div class = "header">
+<h2>Hello, {{user.name}}!</h2>
+
+<a href="/user/logout">Logout</a>
+</div>
+
+<h4>Your Trip Schedules:</h4>
+<table>
+	<thead>
+		<td>Destination</td>	
+		<td>Travel Start Date</td>
+		<td>Travel End Date</td>	
+		<td>Plan</td>			
+	</thead>
+	<tbody>
+	{% for i in yourtrips %}
+	
+	<tr>
+		<td><a href="/destination/{{i.trip.id}}">{{i.trip.destination}}</a></td>
+		<td>{{i.trip.travel_date_from}}</td>
+		<td>{{i.trip.travel_date_to}}</td>
+		<td>{{i.trip.plan}}</td>
+
+	</tr>
+	{% endfor %}
+	</tbody>
+	
+</table>
+
+
+
+<h4>Other User's Travel Plans</h4>
+
+<table>
+	<thead>
+		<td>Name</td>	
+		<td>Destination</td>	
+		<td>Travel Start Date</td>	
+		<td>Travel End Date</td>
+		<td>Do You Want to Join?</td>		
+	</thead>
+	<tbody>
+		{% for i in yourtrips1 %}
+
+
+	
+	
+			<tr>
+				<td>{{i.trip.user.name}}</td>
+				<td><a href="/destination/{{i.trip.id}}">{{i.trip.destination}}</td>
+				<td>{{i.trip.travel_date_from}}</td>
+				<td>{{i.trip.travel_date_to}}</td>
+				<td><a href="/trip/join/{{i.trip.id}}">Join</a></td>
+
+			</tr>
+
+		{% endfor %}
+
+
+
+	</tbody>
+</table>
+
+<a href="/trip/create">Add</a>
+
+	
+</body>
+</html>

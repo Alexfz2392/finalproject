@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'app/index.css' %}">
+</head>
+<body>
+
+
+
+<h2>Registration</h2>
+
+<form action="/user/create" method="post">
+{% csrf_token %}
+
+	<label for="name">Name:</label>
+	<input id= "name" name = "name" type="text">
+	<br>
+
+	<label for="username">Username:</label>
+	<input id= "username" name = "username" type="text">
+	<br>
+
+	<label for="password">Password:</label>
+	<input id= "password" name = "password" type="password">
+	<br>
+
+	<label for="password_confirm">Confirm PW:</label>
+	<input id= "password_confirm" name = "password_confirm" type="password">
+	<br>
+
+
+	<input type="submit" value= "Register">
+
+</form>{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<br>
+
+<h2>Login</h2>
+<form action="/user/login" method="post">
+{% csrf_token %}
+
+
+	<label for="username">Username:</label>
+	<input id= "username" name = "username" type="text">
+	<br>
+
+	<label for="password">Password:</label>
+	<input id= "password" name = "password" type="password">
+	<br>
+
+	<input type="submit" value= "Login">
+
+</form>
+	
+</body>
+</html>
